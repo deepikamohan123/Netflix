@@ -87,7 +87,7 @@ getDoc(docRef).then((doc) => {
         {/* {contents ? <div> */}
             <div className='div'>
         <div className='div2'>
-        <img className="post" src={`${state.obj ? imageUrl+state.obj.poster_path : ''}`} alt="Poster" />
+        <img className="poster" src={`${state.obj ? imageUrl+state.obj.poster_path : ''}`} alt="Poster" />
       </div>
       <div className="content">
         <h1 className='title'>{state.obj ? state.obj.title ? state.obj.title : state.obj.name : ''}</h1>
