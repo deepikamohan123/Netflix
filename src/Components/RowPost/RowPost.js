@@ -3,6 +3,7 @@ import Youtube from 'react-youtube'
 import './RowPost.css'
 import axios from '../../axios'
 import {API_KEY, baseUrl, imageUrl}  from '../../Constants/Constants'
+import {Link} from 'react-router-dom'
 
 function RowPost(props) {
     const [movies, setMovies] = useState([])
@@ -41,16 +42,37 @@ function RowPost(props) {
        { state ? <Youtube videoId={urlId ? urlId.key : alert('No Trailor available')} opts={opts} />: ""}
       <h2>{props.title}</h2>
       <div className="posters">
-        {movies.map((obj)=>{
+        {props.url ? movies.map((obj)=>{
             return (
+
                 <div>
                 <img onClick={()=>{
                     setstate(!state)
                     handleMovieClick(obj.id)
-                }} className={props.isSmall ? 'smallPoster' : 'poster'} src={`${imageUrl+obj.backdrop_path}`} alt="Poster" />
-                <a href='https://www.themoviedb.org/tv/94997-house-of-the-dragon'>{obj ? obj.title ? obj.title : obj.name : ""}</a></div>
+                }} className={props.isSmall ? 'smallPoster' : 'poster'} src={`${imageUrl+obj.poster_path}`} alt="Poster" />
+                {obj ?  <Link className='link' to={`/about`} state={{obj}} style={{ textDecoration: 'none' ,cursor:'pointer'}}>{obj ? obj.title ? obj.title : obj.name : ""}</Link> : alert('Not Available')}
+                  
+                  
+                   
+                </div>
 
-)})}
+)}) : ''}
+
+{/* {props.movies ? props.movies.map((obj)=>{
+            return (
+
+                <div>
+                <img onClick={()=>{
+                    setstate(!state)
+                    handleMovieClick(obj.id)
+                }} className={props.isSmall ? 'smallPoster' : 'poster'} src={`${imageUrl+obj.poster_path}`} alt="Poster" />
+                {obj ?  <Link className='link' to={`/about`} state={{obj}} style={{ textDecoration: 'none' ,cursor:'pointer'}}>{obj ? obj.title ? obj.title : obj.name : ""}</Link> : alert('Not Available')}
+                  
+                  
+                   
+                </div>
+
+)}) : ''} */}
            
         
         

@@ -1,22 +1,30 @@
 import React from 'react';
 import './App.css';
-import {originals,actions,trending} from './Urls'
-import NavBar from './Components/NavBar/NavBar';
-import Banner from './Components/Banner/Banner';
-import RowPost from './Components/RowPost/RowPost';
+import {BrowserRouter as Router,Route, Routes,Link} from 'react-router-dom'
+import {AppContext} from './AppContext'
+import Home from './Pages/Home/Home';
+import About from './Pages/About/About';
+
 
 
 function App() {
   return (
+   
     <div className="App">
-      <NavBar/>
-      <Banner/>
-      <RowPost title='Trending' url={trending}/>  
-      <RowPost title='Netflix Originals' isSmall url={originals}/>
-      <RowPost title='Action' isSmall url={actions}/>  
+         <Router> 
+                   <Link to='/'></Link>
+                   <AppContext.Provider >
+                   <Routes>
+                      <Route element={<Home/>} path='/'/> 
+                      <Route element={<About/>} path='/about'/>
+                      </Routes>
+                      </AppContext.Provider>
+                      </Router>
+      
       {/* //isSmall is checked */}
       
     </div>
+
   );
 }
 
